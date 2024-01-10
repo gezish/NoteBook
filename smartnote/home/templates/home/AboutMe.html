@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Me</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            margin: 40px;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+        }
+
+        section {
+            margin: 20px 0;
+        }
+
+        form {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 15px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            background-color: #333;
+            color: #fff;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        #photoPreview {
+            max-width: 100%;
+            height: auto;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>About Me</h1>
+    </header>
+
+    <section>
+        <form id="aboutMeForm" enctype="multipart/form-data">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="dob">Date of Birth:</label>
+            <input type="date" id="dob" name="dob" required>
+
+            <label for="bio">Bio:</label>
+            <textarea id="bio" name="bio" rows="4" required></textarea>
+
+            <label for="photo">Upload Photo:</label>
+            <input type="file" id="photo" name="photo" accept="image/*">
+
+            <img id="photoPreview" src="#" alt="Preview" style="display:none;">
+
+            <button type="submit">Save</button>
+        </form>
+    </section>
+
+    <script>
+        document.getElementById("photo").addEventListener("change", function() {
+            previewPhoto(this);
+        });
+
+        document.getElementById("aboutMeForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            // Add your logic for handling form submission here
+        });
+
+        function previewPhoto(input) {
+            var photoPreview = document.getElementById("photoPreview");
+            var reader = new FileReader();
+
+            reader.onload = function(e) {
+                photoPreview.src = e.target.result;
+                photoPreview.style.display = "block";
+            };
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    </script>
+
+</body>
+</html>
